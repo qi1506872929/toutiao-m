@@ -107,14 +107,16 @@ export default {
       // 3．请求调用登录
       try {
         const { data } = await login(this.user)
+        // 4．处理响应结果
         this.$toast.success('登录成功')
+        // 存储登录信息
         this.$store.commit('SETUSER', data.data)
+        // 登录成功，跳转回原来页面
+        this.$router.back()
       } catch (error) {
         console.log(error)
         this.$toast.fail('登录失败，手机号或验证码错误')
       }
-
-      // 4．处理响应结果
     },
 
     onFailed (error) {

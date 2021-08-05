@@ -21,3 +21,11 @@ export const sendSms = mobile => {
     url: `/app/v1_0/sms/codes/${mobile}`
   })
 }
+
+// 获取用户自己的信息
+export const getUserInfo = mobile => {
+  return request({
+    method: 'GET',
+    url: '/app/v1_0/user'
+  })
+}

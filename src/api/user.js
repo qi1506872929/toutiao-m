@@ -23,9 +23,17 @@ export const sendSms = mobile => {
 }
 
 // 获取用户自己的信息
-export const getUserInfo = mobile => {
+export const getUserInfo = () => {
   return request({
     method: 'GET',
     url: '/app/v1_0/user'
+  })
+}
+
+// 获取频道列表
+export const getUserChannels = () => {
+  return request({
+    method: 'GET',
+    url: '/app/v1_0/user/channels'
   })
 }

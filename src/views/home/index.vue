@@ -48,7 +48,12 @@
       get-container="body"
       style="height: 100%;"
     >
-      <ChannelEdit :user-channels="channels"></ChannelEdit>
+      <ChannelEdit
+        :user-channels="channels"
+        :active="active"
+        @close="isChannelEditShow = false"
+        @update-active="active = $event"
+      ></ChannelEdit>
     </van-popup>
   </div>
 </template>
@@ -57,6 +62,8 @@
 import { getUserChannels } from '@/api/user'
 import ArticleList from './components/article-list'
 import ChannelEdit from './components/channel-edit'
+import { mapState } from 'vuex'
+import { getItem } from '@/utils/storage'
 
 export default {
   name: 'HomeIndex',
@@ -65,18 +72,36 @@ export default {
     return {
       active: 0, // 控制被激活的标签
       channels: [], // 频道列表
-      isChannelEditShow: true // 控制编辑频道的显示状态
+      isChannelEditShow: false // 控制编辑频道的显示状态
     }
   },
   methods: {
     async loadChannels () {
-      // 请求频道数据
-      const { data } = await getUserChannels()
-      this.channels = data.data.channels
+      let channels = []
+      if (this.user) {
+        // 已登录，请求频道数据
+        const { data } = await getUserChannels()
+        channels = data.data.channels
+      } else {
+        // 未登录，从本地存储导入
+        const localChannels = getItem('user-channels')
+        // 如果有本地存储则使用
+        if (localChannels) {
+          channels = localChannels
+        } else {
+          // 没有本地存储,请求默认的推荐频道
+          const { data } = await getUserChannels()
+          channels = data.data.channels
+        }
+      }
+      this.channels = channels
     }
   },
   created () {
     this.loadChannels()
+  },
+  computed: {
+    ...mapState(['user'])
   }
 }
 </script>

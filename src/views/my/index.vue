@@ -7,14 +7,19 @@
         :border="false"
       >
         <van-image
-          class="avater"
+          class="avatar"
           slot="icon"
           round
           fit="cover"
           :src="currentUser.photo"
         />
         <div class="name" slot="title">{{currentUser.name}}</div>
-        <van-button class="update-btn" size="small" round>编辑资料</van-button>
+        <van-button
+          class="update-btn"
+          size="small"
+          round
+          to="/user/profile"
+        >编辑资料</van-button>
       </van-cell>
       <van-grid class="data-info" :border="false">
         <van-grid-item class="data-info-item">
@@ -84,16 +89,16 @@ import { getUserInfo } from '@/api/user'
 
 export default {
   name: 'MyIndex',
-  data () {
+  data() {
     return {
       currentUser: {} // 当前登录用户信息
     }
   },
   computed: {
-    ...mapState(['user'])
+    ...mapState([ 'user' ])
   },
   methods: {
-    onLogout () {
+    onLogout() {
       // 提示用户确认退出
       this.$dialog
         .confirm({
@@ -108,12 +113,12 @@ export default {
           // on cancel
         })
     },
-    async loadCurrentUser () {
+    async loadCurrentUser() {
       const { data } = await getUserInfo()
       this.currentUser = data.data
     }
   },
-  created () {
+  created() {
     this.loadCurrentUser()
   }
 }
@@ -130,7 +135,7 @@ export default {
       background-color: unset;
       padding-top: 38px;
       padding-bottom: 11px;
-      .avater {
+      .avatar {
         width: 66px;
         height: 66px;
         border: 1px solid #fff;

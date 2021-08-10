@@ -9,6 +9,7 @@
         type="info"
         round
         size="small"
+        to="/search"
       >
         搜索
       </van-button>
@@ -68,7 +69,7 @@ import { getItem } from '@/utils/storage'
 export default {
   name: 'HomeIndex',
   components: { ArticleList, ChannelEdit },
-  data () {
+  data() {
     return {
       active: 0, // 控制被激活的标签
       channels: [], // 频道列表
@@ -76,7 +77,7 @@ export default {
     }
   },
   methods: {
-    async loadChannels () {
+    async loadChannels() {
       let channels = []
       if (this.user) {
         // 已登录，请求频道数据
@@ -97,11 +98,11 @@ export default {
       this.channels = channels
     }
   },
-  created () {
+  created() {
     this.loadChannels()
   },
   computed: {
-    ...mapState(['user'])
+    ...mapState([ 'user' ])
   }
 }
 </script>

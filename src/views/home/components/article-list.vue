@@ -13,8 +13,8 @@
         @load="onLoad"
       >
         <article-item
-          v-for="article in articles"
-          :key="article.art_id"
+          v-for="(article, index) in articles"
+          :key="index"
           :article="article"
         ></article-item>
         <!-- <van-cell v-for="article in articles" :key="article.title" :title="article.title" /> -->
@@ -36,7 +36,7 @@ export default {
       require: true
     }
   },
-  data () {
+  data() {
     return {
       articles: [], // 数据列表
       loading: false, // 控制加载中的 loading 状态
@@ -47,7 +47,7 @@ export default {
     }
   },
   methods: {
-    async onLoad () {
+    async onLoad() {
       // 请求获取数据
       const { data } = await getArticles({
         channel_id: this.channel.id, // 频道ID
@@ -70,7 +70,7 @@ export default {
         this.finished = true
       }
     },
-    async onRefresh () {
+    async onRefresh() {
       // 请求获取数据
       const { data } = await getArticles({
         channel_id: this.channel.id, // 频道ID

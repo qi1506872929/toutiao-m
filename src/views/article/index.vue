@@ -122,7 +122,7 @@ export default {
   props: {
     articleId: {
       type: [ String, Number, Object ],
-      require: true
+      required: true
     }
   },
   data() {

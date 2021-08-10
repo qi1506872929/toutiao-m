@@ -54,14 +54,14 @@ export default {
   props: {
     userChannels: {
       type: Array,
-      require: true
+      required: true
     },
     active: {
       type: Number,
-      require: true
+      required: true
     }
   },
-  data () {
+  data() {
     return {
       allChannels: [], // 所有频道列表
       isEdit: false // 控制编辑的显示状态
@@ -69,12 +69,12 @@ export default {
   },
   methods: {
     //   加载所有频道数据
-    async loadAllChannels () {
+    async loadAllChannels() {
       const { data } = await getAllChannels()
       this.allChannels = data.data.channels
     },
     // 添加频道
-    async onAdd (channel) {
+    async onAdd(channel) {
       this.userChannels.push(channel)
       // 登录了，数据存储到线上，未登录，存储到本地
       if (this.user) {
@@ -87,7 +87,7 @@ export default {
       }
     },
     // 点击频道操作
-    onUserChannelClick (channel, index) {
+    onUserChannelClick(channel, index) {
       if (this.isEdit && index !== 0) {
         // 编辑状态，删除频道
         this.deleteChannel(channel, index)
@@ -97,7 +97,7 @@ export default {
       }
     },
     // 删除频道
-    async deleteChannel (channel, index) {
+    async deleteChannel(channel, index) {
       // 如果删除的是当前的激活频道之前的频道
       if (index <= this.active) {
         // 更新频道索引
@@ -113,7 +113,7 @@ export default {
       }
     },
     // 切换频道
-    switchChannel (index) {
+    switchChannel(index) {
       console.log('切换频道')
       // 切换频道
       this.$emit('update-active', index)
@@ -123,7 +123,7 @@ export default {
   },
   computed: {
     //   推荐的频道列表
-    recommendChannels () {
+    recommendChannels() {
       // 所有频道 - 我的频道 = 剩下的推荐频道
       //   return this.allChannels.filter(channel => this.userChannels.every(userChannel => userChannel.id !== channel.id))
       return this.allChannels.filter(
@@ -131,9 +131,9 @@ export default {
           !this.userChannels.find(userChannel => userChannel.id === channel.id)
       )
     },
-    ...mapState(['user'])
+    ...mapState([ 'user' ])
   },
-  created () {
+  created() {
     this.loadAllChannels()
   }
 }

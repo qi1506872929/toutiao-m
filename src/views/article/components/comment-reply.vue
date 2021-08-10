@@ -50,11 +50,11 @@ export default {
   props: {
     comment: {
       type: Object,
-      require: true
+      required: true
     },
     articleId: {
       type: [ Number, String, Object ],
-      require: true
+      required: true
     }
   },
   data() {

@@ -20,7 +20,7 @@ export default {
   props: {
     searchText: {
       type: String,
-      require: true
+      required: true
     }
   },
   data() {

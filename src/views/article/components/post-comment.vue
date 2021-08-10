@@ -22,7 +22,7 @@ export default {
     // 如果是发布文章评论，则传递文章 id，如果是发布评论回复，则传递评论 id
     target: {
       type: [ Number, String, Object ],
-      require: true
+      required: true
     },
     // 如果是发布评论回复，则也需要传递文章 id
     articleId: {

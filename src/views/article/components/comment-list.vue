@@ -44,7 +44,7 @@ export default {
     // 如果获取评论回复，则传递评论 id
     source: {
       type: [ Number, String, Object ],
-      require: true
+      required: true
     },
     // 获取文章的评论 'a'，获取评论的回复 'c'
     type: {

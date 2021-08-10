@@ -26,7 +26,7 @@ export default {
   props: {
     searchHistories: {
       type: Array,
-      require: true
+      required: true
     }
   },
   data() {

@@ -12,7 +12,7 @@ export default new Vuex.Store({
     user: getItem(USER_KEY)
   },
   mutations: {
-    SETUSER (state, data) {
+    SETUSER(state, data) {
       state.user = data
       setItem(USER_KEY, state.user)
     }

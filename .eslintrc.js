@@ -85,6 +85,7 @@ module.exports = {
     // 操作符前后需要加空格
     'space-infix-ops': 2,
     'array-bracket-spacing': [ 'error', 'always' ],
-    'object-curly-spacing': [ 'error', 'always' ]
+    'object-curly-spacing': [ 'error', 'always' ],
+    'max-len': [ 0, 80, 2 ]// 字符串最大长度
   }
 }

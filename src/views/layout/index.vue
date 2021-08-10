@@ -17,13 +17,13 @@
 import { mapState } from 'vuex'
 export default {
   name: 'LayoutIndex',
-  data () {
+  data() {
     return {
       active: 0
     }
   },
   computed: {
-    ...mapState(['user'])
+    ...mapState([ 'user' ])
   }
 }
 </script>

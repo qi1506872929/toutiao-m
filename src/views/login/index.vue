@@ -73,7 +73,7 @@ import { login, sendSms } from '@/api/user'
 // import { Toast } from 'vant'
 export default {
   name: 'LoginIndex',
-  data () {
+  data() {
     return {
       user: {
         mobile: '17090086870', // 手机号
@@ -94,7 +94,7 @@ export default {
     }
   },
   methods: {
-    async onLogin () {
+    async onLogin() {
       // Toast.loading({
       this.$toast.loading({
         message: '登录中...', // 提示文本
@@ -119,7 +119,7 @@ export default {
       }
     },
 
-    onFailed (error) {
+    onFailed(error) {
       console.log(error)
       if (error.errors[0]) {
         this.$toast({
@@ -129,7 +129,7 @@ export default {
       }
     },
 
-    async onSendSms () {
+    async onSendSms() {
       try {
         // 校验手机号码
         await this.$refs['login-form'].validate('mobile')

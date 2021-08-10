@@ -44,7 +44,7 @@ export default {
   props: {
     comment: {
       type: Object,
-      require: true
+      required: true
     }
   },
   methods: {

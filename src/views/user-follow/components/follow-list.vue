@@ -7,6 +7,7 @@
       @load="onLoad"
     >
       <van-cell v-for="(item, index) in list" :key="index" center>
+        <!-- 用户头像 -->
         <van-image
           class="avatar"
           slot="icon"
@@ -14,12 +15,18 @@
           round
           :src="item.photo"
         />
+        <!-- 用户名和粉丝数 -->
         <div slot="title" class="title-wrap">
           <div class="name">{{ item.name }}</div>
           <div>
             <span class="follow-count">粉丝数：{{ item.fans_count }}</span>
           </div>
         </div>
+        <!--
+          通过 $route.query.tab 判断进入方式(关注 还是 粉丝)
+          通过 is_followed 判断当前状态是 关注 还是 未关注，默认是关注
+          通过 mutual_follow 判断是 相互关注 还是 已关注
+         -->
         <div v-if="$route.query.tab !== 'followers'">
           <van-button
             :type="item.is_followed ? 'default' : 'danger'"
@@ -82,6 +89,7 @@ export default {
           : getFollowingsByUser(...params)
         )
         const { results } = data.data
+        // 循环添加 is_followed 属性，用来判断用户是否取消关注，默认为关注
         results.forEach(item => {
           item.is_followed = true
         })
@@ -98,6 +106,7 @@ export default {
         this.$toast('数据获取失败')
       }
     },
+    // 用户通过点击按钮触发 关注 / 取消关注 事件
     async onChangeFollow(item) {
       if (item.is_followed) {
         await deleteFollow(item.id)

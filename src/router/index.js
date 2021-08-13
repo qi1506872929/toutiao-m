@@ -75,6 +75,13 @@ const routes = [
     component: () => import('@/views/user-follow/'),
     props: true,
     meta: { requireAuth: true }
+  },
+  { // 我的收藏、历史
+    path: '/my-article/:type?',
+    name: 'my-article',
+    component: () => import('@/views/my-article/'),
+    props: true,
+    meta: { requireAuth: true }
   }
 ]
 

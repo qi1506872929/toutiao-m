@@ -111,8 +111,11 @@ export default {
         this.$toast.success('登录成功')
         // 存储登录信息
         this.$store.commit('SETUSER', data.data)
+        // 登陆成功，清除缓存组件
+        this.$store.commit('DELETECACHEPAGE', 'LayoutIndex')
         // 登录成功，跳转回原来页面
-        this.$router.back()
+        // this.$router.back()
+        this.$router.replace(this.$route.query.redirect || '/')
       } catch (error) {
         console.log(error)
         this.$toast.fail('登录失败，手机号或验证码错误')

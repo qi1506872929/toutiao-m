@@ -49,6 +49,14 @@ export const addFollow = userId => {
   })
 }
 
+// 取消关注
+export const deleteFollow = userId => {
+  return request({
+    method: 'DELETE',
+    url: `/app/v1_0/user/followings/${userId}`
+  })
+}
+
 // 获取用户个人资料
 export const getUserProfile = () => {
   return request({
@@ -72,5 +80,29 @@ export const updateUserPhoto = data => {
     method: 'PATCH',
     url: '/app/v1_0/user/photo',
     data
+  })
+}
+
+// 获取用户关注列表
+export const getFollowingsByUser = (userId, params) => {
+  return request({
+    method: 'GET',
+    url: '/app/v1_0/user/followings',
+    params,
+    data: {
+      target: userId.toString()
+    }
+  })
+}
+
+// 获取用户的粉丝列表
+export function getFollowersByUser(userId, params) {
+  return request({
+    method: 'GET',
+    url: '/app/v1_0/user/followers',
+    params,
+    data: {
+      target: userId.toString()
+    }
   })
 }

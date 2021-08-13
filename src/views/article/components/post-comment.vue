@@ -38,6 +38,7 @@ export default {
   methods: {
     async onPost() {
       this.$toast.loading({
+        duration: 0, // 持续展示 toast
         message: '发布中···',
         forbidClick: true // 禁止背景点击
       })
